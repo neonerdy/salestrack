@@ -1,0 +1,852 @@
+﻿@model SalesTrack.Models.Pipeline
+
+
+
+    <div class="container-xl">
+        <!-- Page title -->
+        <div class="page-header d-print-none">
+            <div class="row align-items-center">
+                <div class="col">
+
+                    <div class="page-header d-print-none">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="page-title">
+                                   Pipeline Detail
+                                </h2>
+                            </div>
+                            <div class="col-auto ms-auto d-print-none">
+                                <div class="btn-list">
+                                    <span class="d-none d-sm-inline">
+                                        
+                                        <a href="/Pipeline/Delete/@Model.ID" class="btn btn-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <line x1="4" y1="7" x2="20" y2="7"></line>
+                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                            </svg>
+                                            Delete
+                                        </a>
+                                    </span>
+                                    <a class="btn btn-primary" href="/Pipeline/Edit/@Model.ID">Edit Pipeline</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-12">
+
+
+
+                <div class="card">
+                    <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p></p>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Project Name</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.ProjectName
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Segment</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                          @Model.Segment
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">No</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.No
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Account Manager</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.AccountManager.EmployeeName
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Customer</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.Customer.CustomerName
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-5" style="margin-left:40px">
+                                    <p></p>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Classification</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.Classification.ClassificationCode @Model.Classification.ClassificationName
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Status</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.Status.StatusName
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Order  Month</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.OrderMonth.Name
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Quotation</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.Quotation.ToString("N0")
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Notes</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Model.Notes
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="col-md-12" style="margin-top:40px">
+
+
+                                <ul class="nav nav-tabs" data-bs-toggle="tabs">
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-1" class="nav-link active" data-bs-toggle="tab">JANUARY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-2" class="nav-link" data-bs-toggle="tab">FEBRUARY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-3" class="nav-link" data-bs-toggle="tab">MARCH</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-4" class="nav-link" data-bs-toggle="tab">APRIL</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-5" class="nav-link" data-bs-toggle="tab">MAY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-6" class="nav-link" data-bs-toggle="tab">JUNE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-7" class="nav-link" data-bs-toggle="tab">JULY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-8" class="nav-link" data-bs-toggle="tab">AUGUST</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-9" class="nav-link" data-bs-toggle="tab">SEPTEMBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-10" class="nav-link" data-bs-toggle="tab">OCTOBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-11" class="nav-link" data-bs-toggle="tab">NOVEMBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-12" class="nav-link" data-bs-toggle="tab">DECEMBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-total" class="nav-link" data-bs-toggle="tab">TOTAL</a>
+                                    </li>
+
+
+                                </ul>
+
+
+                                <div class="card-body">
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane active show" id="tabs-month-1">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JanRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JanExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JanInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JanMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div class="tab-pane" id="tabs-month-2">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.FebRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.FebExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.FebInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.FebMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-3">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MarRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MarExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MarInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MarMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div class="tab-pane" id="tabs-month-4">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AprRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AprExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AprInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AprMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div class="tab-pane" id="tabs-month-5">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MayRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MayExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MayInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.MayMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-6">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JunRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JunExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JunInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JunMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-7">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JulRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JulExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JulInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.JulMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-8">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AugRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AugExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AugInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.AugMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-9">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.SeptRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.SeptExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.SeptInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.SeptMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-10">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.OctRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.OctExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.OctInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.OctMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-11">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.NovRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.NovExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.NovInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.NovMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="tab-pane" id="tabs-month-12">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.DecRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.DecExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.DecInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12MP (Marginal Profit)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.DecMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                        <div class="tab-pane" id="tabs-month-total">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">Total Revenue</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.TotalRevenue.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">Total External Cost</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.TotalExternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">Total Internal Cost</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.TotalInternalCost.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">Total Marginal Profit</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Model.TotalMarginalProfit.ToString("N0")
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                        </div>
+
+
+
+
+                            </div>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>

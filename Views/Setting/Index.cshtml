@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SalesTrack.Models.Setting>
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Settings
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                @if (Session["Role"].ToString() == "Admin")
+                                {
+                                    <a href="/Setting/Add" class="btn btn-primary d-none d-sm-inline-block">
+                                        Add Setting
+                                    </a>
+                                }
+                              </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Setting List (@Model.Count())
+                        </h3>
+                    </div>
+
+
+                    <div class="card-table table-responsive">
+
+                        <table class="table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>NAME</th>
+                                    <th>VALUE</th>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <th>ACTION</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var s in Model)
+                                {
+                                <tr>
+                                    <td>@s.SettingName</td>
+                                    <td>@s.SettingValue</td>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <td>
+                                            <a class="btn btn-outline-primary" href="/Setting/Edit/@s.ID">Edit</a>
+                                            <a class="btn btn-outline-danger" href="/Setting/Delete/@s.ID">Delete</a>
+                                        </td>
+                                    }
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+

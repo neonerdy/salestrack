@@ -1,0 +1,200 @@
+﻿@model SalesTrack.Models.PipelineFilterViewModel
+
+<script language="javascript">
+
+    function filter() {
+        document.frmFilter.action = "@Url.Action("Filter", "Pipeline")";
+        frmFilter.submit();
+    }
+
+    function download() {
+        document.frmFilter.action = "@Url.Action("Download", "Pipeline")";
+        frmFilter.submit();
+    }
+
+
+</script>
+
+
+@{ 
+    decimal total = 0;
+}
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Pipelines (@Model.Pipelines.Count)
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                <a href="/Pipeline/Add" class="btn btn-primary d-none d-sm-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    Add Pipeline
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="card">
+
+
+            @using (Html.BeginForm("Filter", "Pipeline", FormMethod.Post, new { @name = "frmFilter", autocomplete = "off" }))
+            {
+                <div class="card-body">
+
+
+                    <div class="row" style="margin-bottom:10px">
+                        <div class="col-md-3">
+                            @Html.DropDownList("Segment", (IEnumerable<SelectListItem>)ViewBag.Segments, new { @class = "form-select" })
+                        </div>
+                        <div class="col-md-3">
+                            @if (Session["Role"].ToString() == "User")
+                            {
+                                @Html.DropDownList("AccountManagerId", (IEnumerable<SelectListItem>)ViewBag.AccountManagers, new { @class = "form-select", @disabled = "disabled" })
+                            }
+                            else
+                            {
+                                @Html.DropDownList("AccountManagerId", (IEnumerable<SelectListItem>)ViewBag.AccountManagers, new { @class = "form-select"})
+                            }
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownList("ClassificationId", (IEnumerable<SelectListItem>)ViewBag.Classifications, new { @class = "form-select" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownList("StatusId", (IEnumerable<SelectListItem>)ViewBag.Statuses, new { @class = "form-select" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DropDownList("CustomerId", (IEnumerable<SelectListItem>)ViewBag.Customers, new { @class = "form-select" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownList("OrderMonthId", (IEnumerable<SelectListItem>)ViewBag.OrderMonths, new { @class = "form-select" })
+
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model=>model.No, new { @class = "form-control", @placeholder = "No"  })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", @placeholder = "Project Name" })
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-md-3">
+                            <button class="btn btn-light" onclick="filter()"><i class="fa fa-filter"></i>&nbsp;Filter</button>
+                            <a href="@Url.Action("Index","Pipeline")" class="btn btn-light"><i class="fa fa-refresh"></i>&nbsp;Clear</a>
+                            <button class="btn btn-light" onclick="download()"><i class="fa fa-file-excel-o"></i>&nbsp;Export</button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            }
+
+
+
+                <div class="row row-cards">
+
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Customer List
+                                </h3>
+                            </div>
+
+
+                            <div class="card-table table-responsive">
+
+                                <table class="table table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>SEGMENT</th>
+                                            <th>PROJECT NAME</th>
+                                            <th>ACCOUNT MANAGER</th>
+                                            <th>ORDER MONTH</th>
+                                            <th>CLASSIFICATION</th>
+                                            <th>STATUS</th>
+                                            <th>QUOTATION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var p in Model.Pipelines)
+                                        {
+                                            total = total + p.Quotation;
+                                            <tr>
+                                                <td>@p.No</td>
+                                                <td>@p.Segment</td>
+                                                <td><a href="/Pipeline/Detail/@p.ID">@p.ProjectName</a></td>
+                                                <td>@p.AccountManager.EmployeeName</td>
+                                                <td>@p.OrderMonth.Name</td>
+                                                <td>@p.Classification.ClassificationCode @p.Classification.ClassificationName</td>
+                                                <td>@p.Status.StatusName</td>
+                                                <td>@p.Quotation.ToString("N0")</td>
+                                            </tr>
+                                        }
+                                        <tr>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><h3>@total.ToString("N0")</h3></td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+</div>
+
+
+
+
+

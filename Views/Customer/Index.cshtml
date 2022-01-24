@@ -1,0 +1,117 @@
+﻿@model IEnumerable<SalesTrack.Models.Customer>
+
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Customers
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                @if (Session["Role"].ToString() == "Admin")
+                                {
+                                <a href="/Customer/Add" class="btn btn-primary d-none d-sm-inline-block">
+                                    Add Customer
+                                </a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Customer List (@Model.Count())
+                        </h3>
+                    </div>
+
+
+                    <div class="card-table table-responsive">
+
+                        <table class="table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>CUSTOMER NAME</th>
+                                    <th>ADDRESS</th>
+                                    <th>CITY</th>
+                                    <th>E-MAIL</th>
+                                    <th>PHONE</th>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    { 
+                                      <th>ACTION</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in Model)
+                                {
+                                <tr>
+                                    <td>@c.CustomerName</td>
+                                    <td>@c.Address</td>
+                                    <td>@c.City</td>
+                                    <td>@c.Email</td>
+                                    <td>@c.Phone</td>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <td>
+                                            <a class="btn btn-outline-primary" href="/Customer/Edit/@c.ID">Edit</a>
+                                            <a class="btn btn-outline-danger" href="/Customer/Delete/@c.ID">Delete</a>
+                                        </td>
+                                    }
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+

@@ -1,0 +1,688 @@
+﻿@model SalesTrack.Models.Pipeline
+
+
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Edit Pipeline
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                <span class="d-none d-sm-inline">
+                                    <a href="/Pipeline/Detail/@Model.ID" class="btn btn-white">
+                                        Cancel
+                                    </a>
+                                </span>
+                                <button type="button" class="btn btn-primary" onclick="frmPipeline.submit()">Update Pipeline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-12">
+
+
+
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Update", "Pipeline", FormMethod.Post, new { @name = "frmPipeline", autocomplete = "off" }))
+                        {
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p></p>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Project Name</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.HiddenFor(model => model.ID)
+                                            @Html.HiddenFor(model => model.CreatedDate)
+                                            @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control" })
+                                            <div style="color:red">@ViewBag.ProjectNameErrMsg</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">No</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(model => model.No, new { @class = "form-control" })
+                                            <div style="color:red">@ViewBag.NoErrMsg</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Segment</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Segment", (IEnumerable<SelectListItem>)ViewBag.Segments, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.SegmentErrMsg</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Account Manager</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("AccountManagerId", (IEnumerable<SelectListItem>)ViewBag.AccountManagers, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.AccountManagerErrMsg</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Customer</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("CustomerId", (IEnumerable<SelectListItem>)ViewBag.Customers, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.CustomerErrMsg</div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-5" style="margin-left:40px">
+                                    <p></p>
+
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Classification</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("ClassificationId", (IEnumerable<SelectListItem>)ViewBag.Classifications, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.ClassificationErrMsg</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Status</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("StatusId", (IEnumerable<SelectListItem>)ViewBag.Statuses, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.StatusErrMsg</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Order  Month</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("OrderMonthId", (IEnumerable<SelectListItem>)ViewBag.OrderMonths, new { @class = "form-select" })
+                                            <div style="color:red">@ViewBag.OrderMonthErrMsg</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Quotation</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(model => model.Quotation, new { @class = "form-control", @type = "number" })
+                                            <div style="color:red">@ViewBag.QuotationErrMsg</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Notes</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(model => model.Notes, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="col-md-12" style="margin-top:40px">
+
+
+                                <ul class="nav nav-tabs" data-bs-toggle="tabs">
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-1" class="nav-link active" data-bs-toggle="tab">JANUARY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-2" class="nav-link" data-bs-toggle="tab">FEBRUARY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-3" class="nav-link" data-bs-toggle="tab">MARCH</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-4" class="nav-link" data-bs-toggle="tab">APRIL</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-5" class="nav-link" data-bs-toggle="tab">MAY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-6" class="nav-link" data-bs-toggle="tab">JUNE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-7" class="nav-link" data-bs-toggle="tab">JULY</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-8" class="nav-link" data-bs-toggle="tab">AUGUST</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-9" class="nav-link" data-bs-toggle="tab">SEPTEMBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-10" class="nav-link" data-bs-toggle="tab">OCTOBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-11" class="nav-link" data-bs-toggle="tab">NOVEMBER</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#tabs-month-12" class="nav-link" data-bs-toggle="tab">DECEMBER</a>
+                                    </li>
+
+
+                                </ul>
+
+
+
+                                <div class="card-body">
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane active show" id="tabs-month-1">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JanRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JanExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">1InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JanInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-2">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.FebRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.FebExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">2InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.FebInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-3">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MarRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MarExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">3InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MarInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-4">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AprRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AprExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">4InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AprInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-5">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MayRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MayExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">5InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.MayInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-6">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JunRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JunExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">6InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JunInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-7">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JulRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JulExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">7InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.JulInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-8">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AugRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AugExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">8InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.AugInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-9">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.SeptRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.SeptExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">9InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.SeptInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-10">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.OctRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.OctExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">10InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.OctInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-11">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.NovRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.NovExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">11InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.NovInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tabs-month-12">
+
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12Rev (Revenue)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.DecRevenue, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12ExC (External Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.DecExternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom:10px">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" style="font-weight:normal">12InC (Internal Cost)</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(model => model.DecInternalCost, new { @class = "form-control", @type = "number" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>

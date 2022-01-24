@@ -1,0 +1,102 @@
+﻿@model IEnumerable<SalesTrack.Models.Classification>
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Classification
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                @if (Session["Role"].ToString() == "Admin")
+                                {
+                                    <a href="/Classification/Add" class="btn btn-primary d-none d-sm-inline-block">
+                                        Add Classification
+                                    </a>
+                                }
+                              </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Classification List (@Model.Count())
+                        </h3>
+                    </div>
+
+
+                    <div class="card-table table-responsive">
+
+                        <table class="table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>CODE</th>
+                                    <th>CLASSIFICATION NAME</th>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <th>ACTION</th>
+                                    }
+                                  </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in Model)
+                                {
+                                <tr>
+                                    <td>@c.ClassificationCode</td>
+                                    <td>@c.ClassificationName</td>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <td>
+                                            <a class="btn btn-outline-primary" href="/Classification/Edit/@c.ID">Edit</a>
+                                            <a class="btn btn-outline-danger" href="/Classification/Delete/@c.ID">Delete</a>
+                                        </td>
+                                    }
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+

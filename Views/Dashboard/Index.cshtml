@@ -1,0 +1,543 @@
+﻿@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>*@
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+
+
+
+    $(document).ready(function () {
+
+        quotationByMonthChart();
+        quotationByStatusChart();
+
+
+
+    });
+
+
+     function quotationByMonthChart() {
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("QuotationByMonth", "Dashboard")',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    drawLineChart(result);
+                })
+            }
+        });
+
+    }
+
+
+
+    function quotationByStatusChart() {
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("QuotationByStatus", "Dashboard")',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    $("#chartTitle").text("By Status");
+                    drawPieChart(result);
+                })
+            }
+        });
+
+    }
+
+
+     function quotationBySegmentChart() {
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("QuotationBySegment", "Dashboard")',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                     $("#chartTitle").text("By Segment");
+                    drawPieChart(result);
+                })
+            }
+        });
+
+    }
+
+
+    function quotationByClassificationChart() {
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("QuotationByClassification", "Dashboard")',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    $("#chartTitle").text("By Classification");
+                    drawPieChart(result);
+                })
+            }
+        });
+
+    }
+
+
+    
+
+    function drawLineChart(result) {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Month');
+        data.addColumn('number', 'Quotation');
+
+        var dataArray = [];
+        $.each(result, function (i, obj) {
+            dataArray.push([obj.Label, obj.Data]);
+        })
+        data.addRows(dataArray);
+
+        var options = {
+            width: 600,
+            height: 300,
+
+        }
+        var lineChart = new google.visualization.LineChart(document.getElementById('chart1'));
+        lineChart.draw(data,options);
+
+
+
+    }
+
+
+
+
+
+    function drawPieChart(result) {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Quotation');
+
+        var dataArray = [];
+        $.each(result, function (i, obj) {
+            dataArray.push([obj.Label, obj.Data]);
+        })
+        data.addRows(dataArray);
+
+        var options = {
+            width: 600,
+            height: 300,
+            animation:
+           {
+               "startup": true,
+               duration: 2000,
+               easing: 'out'
+           }
+
+        }
+        var columnChart = new google.visualization.PieChart(document.getElementById('chart2'));
+        columnChart.draw(data,options);
+
+
+
+    }
+
+
+</script>
+  
+
+<div class="page-body">
+
+
+    <div class="container-xl">
+
+        <div class="page-header d-print-none">
+            <div class="row align-items-center">
+                <div class="col">
+                    <!-- Page pre-title -->
+
+                    <h2 class="page-title">
+                        Dashboard
+                    </h2>
+                </div>
+                <!-- Page title actions -->
+                <div class="col-auto ms-auto d-print-none">
+
+                    <div class="btn-list">
+                        <a href="/Pipeline/Add" class="btn btn-primary d-none d-sm-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            Add Pipeline
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="col-12">
+
+            <div class="row row-deck row-cards">
+
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-green text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="6" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle><path d="M17 17h-11v-14h-2"></path><path d="M6 5l14 1l-1 7h-13"></path></svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        @ViewBag.ProjectCount
+                                    </div>
+                                    <div class="text-muted">
+                                        Projects
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-blue text-white avatar">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path><path d="M12 3v3m0 12v3"></path></svg>
+
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        @ViewBag.Quotation.ToString("N0")
+                                    </div>
+                                    <div class="text-muted">
+                                        Quotation
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-red text-white avatar">
+
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/view-360 -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(90 12 12)" /></svg>
+
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        @ViewBag.CustomerCount
+                                    </div>
+                                    <div class="text-muted">
+                                        Customers
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-purple text-white avatar">
+
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/user-circle -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="7" r="4"></circle><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg>
+
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        @ViewBag.AccountManagerCount
+                                    </div>
+                                    <div class="text-muted">
+                                        Account Managers
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">By Month</h3>
+
+                            @*<canvas id="myChart1"></canvas>*@
+
+                            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="row">
+                                <div style="width:100%;height:100%">
+                                    <div id="chart1" style="padding: 0;margin: auto;display: block; "> </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <div class="d-flex align-items-center">
+                                <h3 class="card-title" id="chartTitle">By Status</h3>
+                                <div class="ms-auto lh-1">
+
+                                    <div class="dropdown">
+                                        <a href="#" class="card-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle><circle cx="12" cy="5" r="1"></circle></svg>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" style="">
+                                            <a onclick="quotationByStatusChart()" class="dropdown-item">Status</a>
+                                            <a onclick="quotationBySegmentChart()" class="dropdown-item">Segment</a>
+                                            <a onclick="quotationByClassificationChart()" class="dropdown-item">Classification</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="row">
+                                <div style="width:100%;height:100%">
+                                    <div id="chart2" style="padding: 0;margin: auto;display: block; "> </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Performance</h3>
+                        </div>
+                        <table class="table card-table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>Account Manager</th>
+                                    <th colspan="2">Quotation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var p in ViewBag.Performances)
+                                {
+                                    <tr>
+                                        <td>@p.Label</td>
+                                        <td>@p.Data.ToString("N0")</td>
+                                        <td class="w-50">
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar bg-primary" style="width: @p.Actual%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">1H Target</h3>
+                        </div>
+                        <table class="table card-table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>@ViewBag.ActiveYear 1H Target</th>
+                                    <th>@ViewBag.TargetSetting1</th>
+                                    <th>VS Budget</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in ViewBag.TargetPipelines1)
+                                {
+                                <tr>
+                                    <td>@p.Label</td>
+                                    <td>@p.Data.ToString("N0")</td>
+                                    <td>@p.Actual%</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">2H Target</h3>
+                        </div>
+                        <table class="table card-table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>@ViewBag.ActiveYear 2H Target</th>
+                                    <th>@ViewBag.TargetSetting2</th>
+                                    <th>VS Budget</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in ViewBag.TargetPipelines2)
+                                {
+                                    <tr>
+                                        <td>@p.Label</td>
+                                        <td>@p.Data.ToString("N0")</td>
+                                        <td>@p.Actual%</td>
+                                    </tr>
+                                }
+
+
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+@*<script>
+
+    var monthColumns = @Html.Raw(Json.Encode(ViewBag.MonthColumns));
+    var monthData = @Html.Raw(Json.Encode(ViewBag.MonthData));
+
+    var segmentColumns = @Html.Raw(Json.Encode(ViewBag.SegmentColumns));
+    var segmentData = @Html.Raw(Json.Encode(ViewBag.SegmentData));
+
+    const ctx1 = document.getElementById('myChart1').getContext('2d');
+    const myChart1 = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: monthColumns,
+            datasets: [{
+                    label: 'Quotation',
+                    data: monthData,
+                    fill: false,
+                    backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                     borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                    //backgroundColor: ['#ABDEE6','#CBAACB','#FFFB5','#FFCCB6','#F3B0C3','#C6BDA', '#FF968A','#FFAEA5','#ECD5E3', '#97CIA9','#55CBCD', '#CCEE2CB'],
+                    //borderColor: ['#ABDEE6','#CBAACB','#FFFB5','#FFCCB6','#F3B0C3','#C6BDA', '#FF968A','#FFAEA5','#ECD5E3', '#97CIA9','#55CBCD', '#CCEE2CB'],
+
+                    borderWidth: 1
+            }]
+        },
+        options: {
+            title: { display: false },
+            legend: { display: true },
+            responsive:true,
+
+
+        }
+    });
+
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: segmentColumns,
+            datasets: [{
+                    data: segmentData,
+                    fill: false,
+                    backgroundColor: ['#ABDEE6', '#FF968A'],
+                    borderColor: ['#ABDEE6','#FF968A'],
+                    borderWidth: 1
+            }]
+        },
+        options: {
+           title: { display: false },
+            legend: { display: false },
+
+        }
+    });
+</script>*@
+
+
+

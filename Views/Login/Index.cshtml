@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/Content/themes/dist/css/tabler.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/dist/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/dist/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/dist/css/demo.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Tabler Core -->
+    <script src="~/Content/themes/dist/js/tabler.min.js"></script>
+
+
+</head>
+
+<body class="border-top-wide border-primary d-flex flex-column theme-light">
+    <div class="page page-center">
+        <div class="container-tight py-4">
+            <div class="text-center mb-4">
+                <span><i class="fa fa-send-o" style="color:red;font-size: 50px"></i></span>
+                <span style="margin-left: 18px;font-size: 40px;color:black">SalesTrack</span>
+
+            </div>
+            <form class="card card-md" action="/Login/SignIn" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login to your account</h2>
+                    <div class="mb-3">
+                        <label class="form-label">Email </label>
+                        <input type="email" name="Email" class="form-control" placeholder="Enter email" value="ariyanto@isidsea.com">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">
+                            Password
+                        </label>
+                        <div class="input-group input-group-flat">
+                            <input type="password" name="Password" class="form-control" value="Excal1bur18" placeholder="Enter password" autocomplete="off">
+                        </div>
+                    </div>
+                    <div style="margin-top:20px;color:red">@ViewBag.Message</div>
+
+                    <div style="margin-top:150px"></div>
+                    <div class="form-footer" >
+                        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                    </div>
+                </div>
+                
+                
+            </form>
+           
+        </div>
+    </div>
+
+
+</body>
+</html>

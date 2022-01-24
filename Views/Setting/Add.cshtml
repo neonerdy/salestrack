@@ -1,0 +1,69 @@
+﻿@model SalesTrack.Models.Setting
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Add Setting
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Save", "Setting", FormMethod.Post, new {@name="frmSetting", autocomplete = "off"}))
+                        {
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Name</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.SettingName, new { @class = "form-control"})
+                                    @Html.ValidationMessageFor(m => m.SettingName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Value</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.SettingValue, new { @class = "form-control"})
+                                    @Html.ValidationMessageFor(m => m.SettingValue, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">Save Setting</button>
+                                <a href="/Setting/Index" class="btn btn-default">Cancel</a>
+                                
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

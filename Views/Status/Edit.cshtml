@@ -1,0 +1,79 @@
+﻿@model SalesTrack.Models.Status
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Edit Status
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Update", "Status", FormMethod.Post, new { @name = "frmStatus", autocomplete = "off" }))
+                        {
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Status Name</label>
+                                <div>
+                                    @Html.HiddenFor(model => model.ID)
+                                    @Html.TextBoxFor(model => model.StatusName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.StatusName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Possibility</label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.Possibility, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Definition</label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.Definition, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Definition, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">Update Status</button>
+                                <a href="/Status/Index" class="btn btn-default">Cancel</a>
+
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

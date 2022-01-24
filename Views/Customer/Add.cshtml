@@ -1,0 +1,92 @@
+﻿@model SalesTrack.Models.Customer
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Add Customer
+                </h2>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Save", "Customer", FormMethod.Post, new {@name="frmCustomer", autocomplete = "off"}))
+                        {
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Customer Name</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Address</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">City</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Phone</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">E-Mail</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">Save Customer</button>
+                                <a href="/Customer/Index" class="btn btn-default">Cancel</a>
+
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

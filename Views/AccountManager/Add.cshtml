@@ -1,0 +1,105 @@
+﻿@model SalesTrack.Models.AccountManager
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Add Account Manager
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Save", "AccountManager", FormMethod.Post, new {@name="frmAccountManager", autocomplete = "off"}))
+                        {
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Full Name</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmployeeName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Department</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Department, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Phone</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">E-Mail</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Role</label>
+                                <div>
+                                    @Html.DropDownList("Role", (IEnumerable<SelectListItem>)ViewBag.Roles, new { @class = "form-select" })
+                                    @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Sales Target</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.SalesTarget, new { @class = "form-control", @type = "number" })
+                                    @Html.ValidationMessageFor(m => m.SalesTarget, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label">Password</label>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">Save Account Manager</button>
+                                <a href="/AccountManager/Index" class="btn btn-default">Cancel</a>
+
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
