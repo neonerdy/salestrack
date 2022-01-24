@@ -13,3 +13,5 @@ Web based sales pipeline management system
 
 ![Alt text](https://github.com/neonerdy/salestrack/blob/main/edit.JPG "Edit")
 <br /><br />
+
+![Alt text](https://github.com/neonerdy/salestrack/blob/main/add.JPG "Add")
