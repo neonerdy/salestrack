@@ -2,7 +2,10 @@
  
 Web based sales pipeline management system
 
-![Alt text](https://github.com/neonerdy/salestrack/blob/main/dashboard.JPG "Dashboard")
+![Alt text](https://github.com/neonerdy/salestrack/blob/main/dashboard1.JPG "Dashboard1")
+<br /><br />
+
+![Alt text](https://github.com/neonerdy/salestrack/blob/main/dashboard2.JPG "Dashboard2")
 <br /><br />
 
 ![Alt text](https://github.com/neonerdy/salestrack/blob/main/pipeline_list.JPG "Pipeline")
